@@ -7,6 +7,7 @@ public class player : MonoBehaviour
 
     public InputSystem_Actions player_controls;
     private InputAction move;
+    private InputAction attack;
 
     private void Awake()
     {
@@ -18,11 +19,14 @@ public class player : MonoBehaviour
     {
         move = player_controls.Player.Move;
         move.Enable();
+        attack = player_controls.Player.Attack;
+        attack.Enable();
     }
 
     private void OnDisable()
     {
         move.Disable();
+        attack.Disable();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,6 +38,7 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        player_combat();
         move_player();
     }
 
@@ -42,5 +47,13 @@ public class player : MonoBehaviour
         Vector2 player_move = move.ReadValue<Vector2>();
 
         transform.position += new Vector3(player_move.x, player_move.y, 0) * speed * Time.deltaTime;
+    }
+
+    void player_combat()
+    {
+        if (attack.WasPerformedThisFrame())
+        {
+            Debug.Log("Player Fire");
+        }
     }
 }
