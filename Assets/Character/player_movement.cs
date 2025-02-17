@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class player_movement : MonoBehaviour
 {
+    public float speed = 5f;
+
     public InputSystem_Actions player_controls;
     private InputAction move;
 
@@ -26,12 +28,14 @@ public class player_movement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        print(move.ReadValue<Vector2>());
+        Vector2 player_move = move.ReadValue<Vector2>();
+
+        transform.position += new Vector3(player_move.x, player_move.y, 0) * speed * Time.deltaTime;
     }
 }
