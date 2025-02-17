@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.LowLevel;
+using UnityEngine.UIElements;
 
 public class player : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class player : MonoBehaviour
     public InputSystem_Actions player_controls;
     private InputAction move;
     private InputAction attack;
+    private InputAction look;
+    private bool isGamepad = false;
 
     private void Awake()
     {
@@ -23,12 +27,15 @@ public class player : MonoBehaviour
         move.Enable();
         attack = player_controls.Player.Attack;
         attack.Enable();
+        look = player_controls.Player.Look;
+        look.Enable();
     }
 
     private void OnDisable()
     {
         move.Disable();
         attack.Disable();
+        look.Disable();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -58,7 +65,29 @@ public class player : MonoBehaviour
             GameObject bullet_gameObject = Instantiate(Bullet);
 
             bullet_gameObject.transform.position = transform.position;
-            //bullet_gameObject.transform.rotation = "Mouse";    
+
+            if (isGamepad)
+            {
+                Vector2 player_look = look.ReadValue<Vector2>();
+                float look_angle = Mathf.Atan2(player_look.y, player_look.x) * Mathf.Rad2Deg;
+
+                bullet_gameObject.transform.rotation = Quaternion.Euler(0, 0, look_angle);
+            }
+            else
+            {
+                Vector3 mouse = new Vector3(look.ReadValue<Vector2>().x, look.ReadValue<Vector2>().y, 0);
+                Vector3 mouse_world_pos = Camera.main.ScreenToWorldPoint(mouse);
+                mouse_world_pos.z = 0;
+
+                Vector3 direction = mouse_world_pos - transform.position;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                bullet_gameObject.transform.rotation = Quaternion.Euler(0, 0, angle);
+            }
         }
+    }
+
+    public void OnDeviceChange(PlayerInput pi)
+    {
+        isGamepad = pi.currentControlScheme.Equals("Gamepad") ? true : false;
     }
 }
