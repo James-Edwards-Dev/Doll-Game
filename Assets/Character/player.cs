@@ -5,6 +5,8 @@ public class player : MonoBehaviour
 {
     public float speed = 5f;
 
+    public GameObject Bullet;
+
     public InputSystem_Actions player_controls;
     private InputAction move;
     private InputAction attack;
@@ -53,7 +55,10 @@ public class player : MonoBehaviour
     {
         if (attack.WasPerformedThisFrame())
         {
-            Debug.Log("Player Fire");
+            GameObject bullet_gameObject = Instantiate(Bullet);
+
+            bullet_gameObject.transform.position = transform.position;
+            //bullet_gameObject.transform.rotation = "Mouse";    
         }
     }
 }
