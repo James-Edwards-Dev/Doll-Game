@@ -9,9 +9,10 @@ public class EnemySpawns : MonoBehaviour
     public float maxEnemies = 10;
     public float enemiesRemaining;
     public float enemyCount;
-
     public GameObject enemy;
     private GameObject Enemy;
+    public GameObject boss;
+    private GameObject Boss;
     public float timer = 0.75f;
     public float timer2 = 0.01f;
     private bool isSpawning = false;
@@ -34,6 +35,19 @@ public class EnemySpawns : MonoBehaviour
         RoundMultiplier();
         enemiesRemaining = maxEnemies * roundMult;
         EnemyCheck();
+
+
+    }
+    public void BossRound()
+    {
+        roundCount++;
+        roundActive = true;
+
+        Boss = Instantiate(boss);
+        Transform b  = Boss.transform;
+        b.position = new Vector2(0,0);
+        b.rotation = Quaternion.identity;
+
     }
     public void GameOver()
     {
@@ -56,7 +70,19 @@ public class EnemySpawns : MonoBehaviour
                 roundMult = 3.0f;
                 break;
             case 5:
+                roundMult = 3.5f;
+                break;
+            case 6: 
                 roundMult = 4.0f;
+                break;
+            case 7:
+                roundMult = 4.5f; 
+                break;
+            case 8:
+                roundMult = 5.0f;
+                break;
+            case 9:
+                roundMult = 5.5f;
                 break;
         }
     }
@@ -96,7 +122,7 @@ public class EnemySpawns : MonoBehaviour
         WaitForSeconds delay2 =  new WaitForSeconds(timer2);
         yield return delay2;
 
-        while (enemyCount < 5 && enemiesRemaining > 0)
+        while (enemyCount < 5 && enemiesRemaining > 0) //CHANGE THE ENEMY COUNT CHECKER
         {
             Spawn();
             yield return delay;
@@ -135,14 +161,21 @@ public class EnemySpawns : MonoBehaviour
                 }
             }
         }
-        if(roundActive == false && Input.GetKeyDown(KeyCode.Space))
+        if(roundActive == false )
         {
-            NextRound();
+            if(roundCount == 10)
+            {
+                GameOver();
+            }
+            else if (roundCount == 9 && Input.GetKeyDown(KeyCode.Space))
+            {
+                BossRound();            
+            }
+            else if(roundCount <= 8 && Input.GetKeyDown(KeyCode.Space)) 
+            {
+                NextRound();
+            }
         }
-        if (roundCount == 5 && enemiesRemaining <= 0)
-        {
-            GameOver();
-        }
-    }
+    } 
 
 }
