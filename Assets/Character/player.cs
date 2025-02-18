@@ -6,6 +6,14 @@ using UnityEngine.UIElements;
 public class player : MonoBehaviour
 {
     public float speed = 5f;
+    public int health = 50;
+
+    // Red 50-41, Green 40-31, Blue, 30-21, Yellow 20-11, Purple, 10-0 
+    public enum doll_phases
+    {
+        red, green, blue, yellow, purple
+    }
+    public doll_phases doll_phase = doll_phases.red;
 
     public GameObject Bullet;
 
@@ -89,5 +97,32 @@ public class player : MonoBehaviour
     public void OnDeviceChange(PlayerInput pi)
     {
         isGamepad = pi.currentControlScheme.Equals("Gamepad") ? true : false;
+    }
+
+    public void damage(int damage)
+    {
+        health -= damage;
+
+        // Red 50-41, Green 40-31, Blue, 30-21, Yellow 20-11, Purple, 10-1 
+        if (health > 40)
+        {
+            doll_phase = doll_phases.red;
+        }
+        else if (health > 30)
+        {
+            doll_phase = doll_phases.green;
+        }
+        else if (health > 20)
+        {
+            doll_phase = doll_phases.blue;
+        }
+        else if (health > 10)
+        {
+            doll_phase = doll_phases.purple;
+        }
+        else if (health <= 0)
+        {
+            Debug.Log("You are dead");
+        }
     }
 }
