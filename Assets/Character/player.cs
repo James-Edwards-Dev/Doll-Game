@@ -61,7 +61,6 @@ public class player : MonoBehaviour
     {
         player_combat();
         move_player();
-        update_color_state();
     }
 
     private void move_player()
