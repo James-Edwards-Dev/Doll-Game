@@ -16,6 +16,7 @@ public class player : MonoBehaviour
     public doll_phases doll_phase = doll_phases.red;
 
     public GameObject Bullet;
+    public GameObject Bullet_Spawn;
 
     public InputSystem_Actions player_controls;
     private InputAction move;
@@ -76,7 +77,8 @@ public class player : MonoBehaviour
         {
             GameObject bullet_gameObject = Instantiate(Bullet);
 
-            bullet_gameObject.transform.position = transform.position;
+            //bullet_gameObject.transform.position = transform.position;
+            bullet_gameObject.transform.position = Bullet_Spawn.transform.position;
 
             if (isGamepad)
             {
