@@ -152,7 +152,8 @@ MonoBehaviour:
   roundActive: 0
   enemyCount: 0
   enemy: {fileID: 130645358205101954, guid: cda631cdac84eb64db83a88ed52df11f, type: 3}
-  timer: 2
+  timer: 0.75
+  timer2: 0.1
 --- !u!4 &8136024
 Transform:
   m_ObjectHideFlags: 0
