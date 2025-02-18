@@ -75,6 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   damage: 10
+  despawnSeconds: 1
 --- !u!212 &8833745018196846785
 SpriteRenderer:
   m_ObjectHideFlags: 0
