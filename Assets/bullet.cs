@@ -18,12 +18,6 @@ public class bullet : MonoBehaviour
         StartCoroutine(DespawnTimer(despawnSeconds));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator DespawnTimer(float despawnSeconds)
     {
         yield return new WaitForSecondsRealtime(despawnSeconds);

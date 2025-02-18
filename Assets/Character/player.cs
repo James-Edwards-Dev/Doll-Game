@@ -23,6 +23,8 @@ public class player : MonoBehaviour
     private InputAction look;
     private bool isGamepad = false;
 
+    private health_bar player_health_bar;
+
     private void Awake()
     {
         player_controls = new InputSystem_Actions();
@@ -49,7 +51,9 @@ public class player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GameObject Canvas = GameObject.FindGameObjectWithTag("Canvas");
 
+        player_health_bar = Canvas.GetComponentInChildren<health_bar>();
     }
 
     // Update is called once per frame
@@ -57,6 +61,7 @@ public class player : MonoBehaviour
     {
         player_combat();
         move_player();
+        update_color_state();
     }
 
     private void move_player()
@@ -103,6 +108,19 @@ public class player : MonoBehaviour
     {
         health -= damage;
 
+        if (health >= 0)
+        {
+            die();
+            return ;
+        }
+        else
+        {
+            update_color_state();
+        }
+    }
+
+    void update_color_state()
+    {
         // Red 50-41, Green 40-31, Blue, 30-21, Yellow 20-11, Purple, 10-1 
         if (health > 40)
         {
@@ -116,13 +134,20 @@ public class player : MonoBehaviour
         {
             doll_phase = doll_phases.blue;
         }
-        else if (health > 10)
+        else if (health > 10) 
+        {
+            doll_phase = doll_phases.yellow;
+        }
+        else
         {
             doll_phase = doll_phases.purple;
         }
-        else if (health <= 0)
-        {
-            Debug.Log("You are dead");
-        }
+
+        player_health_bar.updateHearts(((int)doll_phase));
+    }
+
+    void die()
+    {
+        Debug.Log("You are dead");
     }
 }
