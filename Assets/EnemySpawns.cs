@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemySpawns : MonoBehaviour
 {
-    public float roundCount;
+    public float roundCount; 
     public float roundMult;
     public bool roundActive = false;
     public float maxEnemies = 10;
@@ -17,12 +17,7 @@ public class EnemySpawns : MonoBehaviour
     public float timer2 = 0.01f;
     private bool isSpawning = false;
 
-    public void StartGame()
-    {
-        roundCount = 1;
-        roundActive = true;
-        EnemyCheck();
-    }
+
     private void EndRound()
     {
         roundActive = false;
@@ -43,6 +38,7 @@ public class EnemySpawns : MonoBehaviour
         roundCount++;
         roundActive = true;
 
+        //SPAWNS THE BOSS, SETS POSITION AND ROTATION
         Boss = Instantiate(boss);
         Transform b  = Boss.transform;
         b.position = new Vector2(0,0);
@@ -51,11 +47,12 @@ public class EnemySpawns : MonoBehaviour
     }
     public void GameOver()
     {
+        //SET FINAL SCREEN LOGIC
         Debug.Log("You Won!");
     }
     public void RoundMultiplier()
     {
-        switch ((int)roundCount)
+        switch ((int)roundCount) //sets the switch case based on the round count int
         {
             case 1: 
                 roundMult = 1.5f;
@@ -89,15 +86,16 @@ public class EnemySpawns : MonoBehaviour
     
     public void Spawn()
     {
-        Vector2 spawnPos;
+        Vector2 spawnPos; // initialises spawn position
         do
         {
+            //generates a random x and y coord and adds it to the spawn pos
             float randX = Random.Range(-5f, 5f);
             float randY = Random.Range(-5f, 5f);
             spawnPos = new Vector2(randX, randY);
 
-
-        } while (Physics2D.OverlapCircle(spawnPos, 0.5f) != null);
+        //checks if the spawn pos already contains a collider
+        } while (Physics2D.OverlapCircle(spawnPos, 0.5f) != null); 
 
         Enemy = Instantiate(enemy);
         enemyCount = enemyCount + 1;
@@ -118,12 +116,15 @@ public class EnemySpawns : MonoBehaviour
     {
         isSpawning = true;
 
+        //sets timers
         WaitForSeconds delay =  new WaitForSeconds(timer);
         WaitForSeconds delay2 =  new WaitForSeconds(timer2);
+        //calls timer 2
         yield return delay2;
 
         while (enemyCount < 5 && enemiesRemaining > 0) //CHANGE THE ENEMY COUNT CHECKER
         {
+            //Runs spawn func and waits
             Spawn();
             yield return delay;
         }
@@ -133,7 +134,9 @@ public class EnemySpawns : MonoBehaviour
     }
     void Start()
     {
-        StartGame();
+        roundCount = 1;
+        roundActive = true;
+        EnemyCheck();
     }
     void Update()
     {
