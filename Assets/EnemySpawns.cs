@@ -16,7 +16,11 @@ public class EnemySpawns : MonoBehaviour
     public float timer = 0.75f;
     public float timer2 = 0.01f;
     private bool isSpawning = false;
-
+    public float fadeDuration = 1.5f;
+    public float destroyDelay = 2.0f;
+    private SpriteRenderer spriteRenderer;
+    private bool isDying = false;
+    
 
     private void EndRound()
     {
@@ -112,6 +116,15 @@ public class EnemySpawns : MonoBehaviour
             StartCoroutine(TimerRoutine());
         }
     }
+
+    public void EnemyDeathAnimation()
+    {
+        if(!isDying)
+        {
+            isDying = true;
+            StartCoroutine(DeathRoutine());        }
+    }
+
     IEnumerator TimerRoutine()
     {
         isSpawning = true;
@@ -132,11 +145,13 @@ public class EnemySpawns : MonoBehaviour
 
         StopCoroutine(TimerRoutine());
     }
+
     void Start()
     {
         roundCount = 1;
         roundActive = true;
         EnemyCheck();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
@@ -149,7 +164,7 @@ public class EnemySpawns : MonoBehaviour
             {
                 if(hit.collider.gameObject.gameObject)
                 {
-                    Destroy(hit.collider.gameObject);
+                    EnemyDeathAnimation();
                     enemyCount = enemyCount - 1;
                     enemiesRemaining --;
 
@@ -179,6 +194,32 @@ public class EnemySpawns : MonoBehaviour
                 NextRound();
             }
         }
+    }
+    IEnumerator DeathRoutine()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero); 
+
+        Animator animator = GetComponent<Animator>();
+        if(animator != null)
+        {
+            animator.SetTrigger("Die");
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        float elapsedTime = 0;
+        Color originalColor = spriteRenderer.color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(1,0, elapsedTime / fadeDuration);
+            spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            yield return null;
+        }
+        yield return new WaitForSeconds(destroyDelay);
+        Destroy(hit.collider.gameObject);
     } 
 
 }
