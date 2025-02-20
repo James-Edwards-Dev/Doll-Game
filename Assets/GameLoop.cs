@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameLoop : MonoBehaviour
 {
-    public float roundCount; 
+    public float roundCount = 0; 
     public float roundMult;
     public bool roundActive = false;
     public float maxEnemies = 10;
@@ -16,25 +17,36 @@ public class GameLoop : MonoBehaviour
     public float timer = 0.75f;
     public float timer2 = 0.01f;
     private bool isSpawning = false;
+    public Image darkness;
+    public Image nextRoundImage;
+    public Button nextRoundButton;
+    private player Player;
 
     private void EndRound()
     {
         roundActive = false;
+        Destroy(Enemy);
+        darkness.gameObject.SetActive(true);
+        Player.enabled = false;
     }
 
     private void NextRound()
     {
+        darkness.gameObject.SetActive(false);
         roundCount++;
         roundActive = true;
         RoundMultiplier();
         enemiesRemaining = maxEnemies * roundMult;
         EnemyCheck();
+        Player.enabled = true;
     }
 
     public void BossRound()
     {
+        darkness.gameObject.SetActive(false);
         roundCount++;
         roundActive = true;
+        Player.enabled = true;
 
         Boss = Instantiate(boss);
         Transform b  = Boss.transform;
@@ -105,8 +117,31 @@ public class GameLoop : MonoBehaviour
 
     void Start()
     {
-        roundCount = 1;
-        roundActive = true;
-        EnemyCheck();
+        nextRoundButton.onClick.AddListener(nxtRnd);
+        Player = FindObjectOfType<player>();
+        /**
+        StartScreen();
+        StartScreen(){
+        if (startButton == pressed)
+        {NextRound()}}
+        **/
+        NextRound();
+    }
+    void Update()
+    {
+        if (enemiesRemaining <= 0 && isSpawning)
+        {
+            EndRound();
+        }
+    }
+    public void nxtRnd(){
+        if (roundCount <=1){
+            NextRound();    
+        }
+        else
+        {
+            BossRound();
+        }
+
     }
 }

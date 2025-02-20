@@ -10,9 +10,11 @@ public class Enemy : MonoBehaviour
     public float destroyDelay = 2.0f;
     private SpriteRenderer spriteRenderer;
     private bool isDying = false;
+    private GameLoop gameLoop;
 
     void Start()
     {
+        gameLoop = FindObjectOfType<GameLoop>();
         spriteRenderer = GetComponent<SpriteRenderer>();        
         //searches for object with player tag
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player"); 
@@ -53,10 +55,10 @@ public class Enemy : MonoBehaviour
             GetComponent<BoxCollider2D>().enabled = false;
             speed = 0;
             Destroy(collision.gameObject); // Destroy the bullet
-            if (!isDying)
-            {
-                StartCoroutine(DeathRoutine());
-            }
+            StartCoroutine(DeathRoutine());
+            gameLoop.enemiesRemaining--;
+            gameLoop.enemyCount--;
+
         }
     }
     IEnumerator DeathRoutine()
