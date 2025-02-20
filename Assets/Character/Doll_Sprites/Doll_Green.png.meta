@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Doll_Green_0: 7118456058465964397
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

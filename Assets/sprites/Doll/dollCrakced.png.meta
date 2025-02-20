@@ -199,7 +199,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dollCrakced_0: -5943667241580174888
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

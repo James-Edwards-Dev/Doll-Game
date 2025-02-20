@@ -199,7 +199,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      grifLeftAttack2_0: 6073563474222783470
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

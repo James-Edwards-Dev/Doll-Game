@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 11eae78eac19fb246b2dd407d6027d27
+guid: 567f3a5551d70604898d4c521f55fcb8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -302461187939854022
-    second: dwarfHammer_0
+      213: -7580939372562943365
+    second: splat_0
+  - first:
+      213: -1891778214949940708
+    second: splat_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dwarfHammer_0
+      name: splat_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 39
-        width: 334
-        height: 365
+        x: 60
+        y: 67
+        width: 252
+        height: 290
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a39908ee6217dcbf0800000000000000
-      internalID: -302461187939854022
+      spriteID: b72fc926ec71bc690800000000000000
+      internalID: -7580939372562943365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: splat_1
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 222
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1216109cbd0fb5e0800000000000000
+      internalID: -1891778214949940708
       vertices: []
       indices: 
       edges: []
@@ -125,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -134,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      splat_0: -7580939372562943365
+      splat_1: -1891778214949940708
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

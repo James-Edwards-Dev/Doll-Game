@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2200396446463062361}
   - component: {fileID: 7785777764619697108}
-  - component: {fileID: -3429939996011628826}
   - component: {fileID: 9002315356868853166}
+  - component: {fileID: 4311821746543728051}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -78,31 +78,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5402251393668616626, guid: 1b122b380fd52754095388e371791109, type: 3}
+  m_Sprite: {fileID: 5402251393668616626, guid: 56434c2b67361ee49a3d5c54ad212b11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.02, y: 3.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3429939996011628826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130645358205101954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9afd68c2b2f8649b26cdbeeb8cdce0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  stopDist: 0.25
 --- !u!61 &9002315356868853166
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -142,10 +128,32 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.02, y: 3.71}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 3.02, y: 3.71}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 3.02, y: 3.71}
   m_EdgeRadius: 0
+--- !u!95 &4311821746543728051
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130645358205101954}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43b3c87b71bd57f43b7f0e18fc6a3edf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
