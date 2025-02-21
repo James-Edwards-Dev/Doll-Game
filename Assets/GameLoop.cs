@@ -94,7 +94,7 @@ public class GameLoop : MonoBehaviour
 
     public void EnemyCheck()
     {
-        if (enemyCount < 5 && !isSpawning)
+        if (enemyCount < 1 && !isSpawning)
         {
             StartCoroutine(TimerRoutine());
         }
@@ -107,7 +107,7 @@ public class GameLoop : MonoBehaviour
         WaitForSeconds delay2 = new WaitForSeconds(timer2);
         yield return delay2;
 
-        while (enemyCount < 5 && enemiesRemaining > 0)
+        while (enemyCount < 1 && enemiesRemaining > 0)
         {
             Spawn();
             yield return delay;
