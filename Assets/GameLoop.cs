@@ -118,7 +118,7 @@ public class GameLoop : MonoBehaviour
     void Start()
     {
         nextRoundButton.onClick.AddListener(nxtRnd);
-        Player = FindObjectOfType<player>();
+        Player = FindFirstObjectByType<player>();
         /**
         StartScreen();
         StartScreen(){

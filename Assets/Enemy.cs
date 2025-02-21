@@ -2,19 +2,18 @@ using UnityEngine;
 using System.Collections;
 public class Enemy : MonoBehaviour
 {
-    public float speed = 1; //enemy speed
+    public float speed = 2; //enemy speed
     public float stopDist = 0.25f;
     private Transform player;
     private float playerRad = 0f;
-    public float fadeDuration = 1.5f;
-    public float destroyDelay = 2.0f;
+    public float fadeDuration = 3f;
+    public float destroyDelay = 4f;
     private SpriteRenderer spriteRenderer;
-    private bool isDying = false;
     private GameLoop gameLoop;
 
     void Start()
     {
-        gameLoop = FindObjectOfType<GameLoop>();
+        gameLoop = FindFirstObjectByType<GameLoop>();
         spriteRenderer = GetComponent<SpriteRenderer>();        
         //searches for object with player tag
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player"); 
@@ -63,7 +62,6 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator DeathRoutine()
     {
-        isDying = true;
         Animator animator = GetComponent<Animator>();
 
         if (animator != null)
