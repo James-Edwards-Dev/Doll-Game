@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class player : MonoBehaviour
 {
     public float speed = 5f;
-    public int health = 50;
+    public float health = 50f;
 
     // Red 50-41, Green 40-31, Blue, 30-21, Yellow 20-11, Purple, 10-0 
     public enum doll_phases
@@ -62,6 +62,7 @@ public class player : MonoBehaviour
     {
         player_combat();
         move_player();
+        Debug.Log(health);
     }
 
     private void move_player()
@@ -105,11 +106,11 @@ public class player : MonoBehaviour
         isGamepad = pi.currentControlScheme.Equals("Gamepad") ? true : false;
     }
 
-    public void damage(int damage)
+    public void damage(float damageAmount)
     {
-        health -= damage;
+        health -= damageAmount;
 
-        if (health >= 0)
+        if (health <= 0)
         {
             die();
             return ;
