@@ -53,13 +53,13 @@ public class Enemy : MonoBehaviour
         }
         if (!isAttacking)
         {
+            //looks for all the colliders within a radius
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
             foreach (var collider in colliders)  
-            {    
-                Debug.Log("Found collider: " + collider.name);        
+            {       
+                //if the player tag is colldied with run coroutine    
                 if (collider.CompareTag("Player"))
                 {
-                    Debug.Log("Player in range!");
                     StartCoroutine(Attack(collider.gameObject));
                     break;
                 }
@@ -76,7 +76,6 @@ public class Enemy : MonoBehaviour
             GetComponent<BoxCollider2D>().enabled = false; //disables the enemies collider
             speed = 0; //stops the enemy from moving
             Destroy(collision.gameObject); // Destroy the bullet
-
             gameLoop.enemiesRemaining--;
             gameLoop.enemyCount--;
         }
@@ -87,8 +86,10 @@ public class Enemy : MonoBehaviour
         {
             isAttacking = true;
 
+            //accesses the player hp from the player script
             player PlayerHP = target.GetComponent<player>();
 
+            //checks if the player hp is above 0 then does damage
             if (PlayerHP.health > 0)
             {
                 PlayerHP.damage(attackDMG);

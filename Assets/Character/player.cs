@@ -62,7 +62,6 @@ public class player : MonoBehaviour
     {
         player_combat();
         move_player();
-        Debug.Log(health);
     }
 
     private void move_player()
@@ -150,6 +149,7 @@ public class player : MonoBehaviour
 
     void die()
     {
+        //self destruct + set hp back to 50?
         Debug.Log("You are dead");
     }
 }

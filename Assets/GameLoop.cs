@@ -24,30 +24,39 @@ public class GameLoop : MonoBehaviour
 
     private void EndRound()
     {
+        //turns on end round screen, kills any extra enemies, turns off the player script
         roundActive = false;
         Destroy(Enemy);
         darkness.gameObject.SetActive(true);
         Player.enabled = false;
     }
 
+
     private void NextRound()
     {
+        //turns off end round screen does mult calcs and enemy checks, starts round
         darkness.gameObject.SetActive(false);
         roundCount++;
         roundActive = true;
         RoundMultiplier();
-        enemiesRemaining = maxEnemies * roundMult;
+        enemiesRemaining = 1 * roundMult;
         EnemyCheck();
         Player.enabled = true;
     }
 
     public void BossRound()
     {
+        //turns off end round screen spawns boss
+        enemiesRemaining += 1;
         darkness.gameObject.SetActive(false);
         roundCount++;
         roundActive = true;
         Player.enabled = true;
+        BossSpawn();
 
+    }
+    void BossSpawn()
+    {
         Boss = Instantiate(boss);
         Transform b  = Boss.transform;
         b.position = new Vector2(0, 0);
@@ -61,6 +70,7 @@ public class GameLoop : MonoBehaviour
 
     public void RoundMultiplier()
     {
+        //round mult switch case
         switch ((int)roundCount)
         {
             case 1: roundMult = 1.5f; break;
@@ -80,10 +90,12 @@ public class GameLoop : MonoBehaviour
         Vector2 spawnPos;
         do
         {
+            //finds a range to spawn enemies in 
+            // needs changing to anywhere outside of a certain range
             float randX = Random.Range(-5f, 5f);
             float randY = Random.Range(-5f, 5f);
             spawnPos = new Vector2(randX, randY);
-        } while (Physics2D.OverlapCircle(spawnPos, 0.5f) != null);
+        } while (Physics2D.OverlapCircle(spawnPos, 0.5f) != null); //checks if an object is already in spawn location
 
         Enemy = Instantiate(enemy);
         enemyCount++;
@@ -94,7 +106,7 @@ public class GameLoop : MonoBehaviour
 
     public void EnemyCheck()
     {
-        if (enemyCount < 1 && !isSpawning)
+        if (!isSpawning)
         {
             StartCoroutine(TimerRoutine());
         }
@@ -107,7 +119,7 @@ public class GameLoop : MonoBehaviour
         WaitForSeconds delay2 = new WaitForSeconds(timer2);
         yield return delay2;
 
-        while (enemyCount < 1 && enemiesRemaining > 0)
+        while (enemyCount < enemiesRemaining )
         {
             Spawn();
             yield return delay;
@@ -117,30 +129,27 @@ public class GameLoop : MonoBehaviour
 
     void Start()
     {
+        //initialized objects, starts game
         nextRoundButton.onClick.AddListener(nxtRnd);
         Player = FindFirstObjectByType<player>();
-        /**
-        StartScreen();
-        StartScreen(){
-        if (startButton == pressed)
-        {NextRound()}}
-        **/
         NextRound();
     }
     void Update()
     {
-        if (enemiesRemaining <= 0 && isSpawning)
+        //ends round when enemies = 0
+        if (enemiesRemaining <= 0 && !isSpawning)
         {
             EndRound();
         }
     }
     public void nxtRnd(){
-        if (roundCount <=1){
-            NextRound();    
+        //sets up next round, on 10th round sets up boss round
+        if (roundCount == 9){
+            BossRound();    
         }
         else
         {
-            BossRound();
+            NextRound();
         }
 
     }
