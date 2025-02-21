@@ -144,7 +144,7 @@ public class GameLoop : MonoBehaviour
     }
     public void nxtRnd(){
         //sets up next round, on 10th round sets up boss round
-        if (roundCount == 9){
+        if (roundCount == 1){
             BossRound();    
         }
         else

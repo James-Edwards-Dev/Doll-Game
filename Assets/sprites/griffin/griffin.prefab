@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4483074736804008446}
   - component: {fileID: 272317912997802296}
   - component: {fileID: 8079996020496872073}
+  - component: {fileID: -606775046821199824}
   m_Layer: 0
   m_Name: griffin
   m_TagString: Untagged
@@ -110,3 +111,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-606775046821199824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3068567448611080611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc45a21c0434164188e903119c411b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Feathers: {fileID: 3273501205699324951, guid: 27792d3e48adf184e82a49d836e75a02, type: 3}
+  player: {fileID: 5161523994172027278, guid: e2585d1b8efefab418451899af491dba, type: 3}
+  spawnInterval: 2
+  feathersPerAttack: 5
+  speed: 5
