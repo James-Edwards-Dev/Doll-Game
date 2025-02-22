@@ -987,6 +987,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!212 &998853612 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 983449381239829424, guid: e2585d1b8efefab418451899af491dba, type: 3}
+  m_PrefabInstance: {fileID: 8452421180560300927}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1043238441 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5860686634821352711, guid: e2585d1b8efefab418451899af491dba, type: 3}
@@ -1577,6 +1582,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 983449381239829424, guid: e2585d1b8efefab418451899af491dba, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386406053640890372, guid: e2585d1b8efefab418451899af491dba, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 998853612}
+    - target: {fileID: 4386406053640890372, guid: e2585d1b8efefab418451899af491dba, type: 3}
+      propertyPath: sprites.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386406053640890372, guid: e2585d1b8efefab418451899af491dba, type: 3}
+      propertyPath: 'sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6233560543837529333, guid: b493847cb8d1b0649b90900a3994f1cb, type: 3}
+    - target: {fileID: 4386406053640890372, guid: e2585d1b8efefab418451899af491dba, type: 3}
+      propertyPath: 'sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7118456058465964397, guid: 91f6ee1258ddf514c957b319112674de, type: 3}
+    - target: {fileID: 4386406053640890372, guid: e2585d1b8efefab418451899af491dba, type: 3}
+      propertyPath: 'sprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 603548030287467390, guid: 8bd6acdea9c82404993a1441a785cf5b, type: 3}
+    - target: {fileID: 4386406053640890372, guid: e2585d1b8efefab418451899af491dba, type: 3}
+      propertyPath: 'sprites.Array.data[3]'
+      value: 
+      objectReference: {fileID: -2737597344366819719, guid: 105d3bbd71a0fab43b66f0ad76437d3e, type: 3}
+    - target: {fileID: 4386406053640890372, guid: e2585d1b8efefab418451899af491dba, type: 3}
+      propertyPath: 'sprites.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1872383464242043562, guid: 01ff8c9c8d55ef64c8522126d3899ffa, type: 3}
     - target: {fileID: 5161523994172027278, guid: e2585d1b8efefab418451899af491dba, type: 3}
       propertyPath: m_Name
       value: Player
