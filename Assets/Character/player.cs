@@ -25,6 +25,8 @@ public class player : MonoBehaviour
     private bool isGamepad = false;
 
     private health_bar player_health_bar;
+    public SpriteRenderer spriteRenderer;
+    public Sprite[] sprites;
 
     private void Awake()
     {
@@ -144,7 +146,9 @@ public class player : MonoBehaviour
             doll_phase = doll_phases.purple;
         }
 
+        spriteRenderer.sprite = sprites[(int)doll_phase];
         player_health_bar.updateHearts(((int)doll_phase));
+        
     }
 
     void die()
